@@ -1,0 +1,17 @@
+
+[Unit]
+Description=gunicorn daemon for megano project
+Requires=gunicorn_megano.socket
+After=network.target
+
+[Service]
+User=leowan
+Group=www-data
+WorkingDirectory=/home/leowan/PyProjects/sb_megano
+
+ExecStartPre=/bin/bash -c 'source /home/leowan/.local/share/virtualenvs/sb_megano-Pye1_wDu/bin/activate && python manage.py collectstatic --noinput'
+
+ExecStart=/home/leowan/.local/share/virtualenvs/sb_megano-Pye1_wDu/bin/gunicorn -c /home/leowan/.local/share/virtualenvs/sb_megano-Pye1_wDu/gunicorn.conf.py megano_store.wsgi:application
+
+[Install]
+WantedBy=multi-user.target

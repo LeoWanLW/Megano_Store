@@ -1,0 +1,9 @@
+
+[Unit]
+Description=gunicorn_megano socket
+
+[Socket]
+ListenStream=/run/gunicorn_megano.sock
+
+[Install]
+WantedBy=sockets.target

@@ -1,0 +1,55 @@
+    Catalog <frontend/js/>
+
+1. File <index.js>
+Deleted block:
+    created() {
+      this.getLimitedProducts()
+    },
+<getLimitedProducts()> is already in block <mounted()>.
+
+
+2. File <app.js>
+
+Deleted line 34:
+    return response.data ? response.data : response.json?.()
+ - unreachable code.
+
+Function:
+    search() {
+        location.assign(`/catalog/?filter=${this.searchText}`)
+    },
+is not working:
+ - clause <.then()> is absent;
+ - path </api/> is absent;
+It is replaced on:
+    search() {
+        const query = encodeURIComponent(this.searchText)
+        location.assign(`/catalog/?filter=${query}`)
+    }
+
+
+3. File <catalog.js>
+
+Into <mounted()> section added:
+    const urlParams = new URLSearchParams(window.location.search)
+    const initialFilter = urlParams.get('filter') || ''
+    if (initialFilter) {
+        this.filter.name = initialFilter
+    }
+
+
+4. File <order-detail.js>
+
+Line 5, 27:
+    </api/order/> replaced to </api/orders/>
+
+
+5. File <payment.js>
+
+In line 14 add trailing slash to route `/api/payment/${orderId}`
+became: `/api/payment/${orderId}/`
+
+
+    Catalog <templates/frontend/>
+
+1. Template "profileAvatar.html" is not used, is it equal "base.html"?

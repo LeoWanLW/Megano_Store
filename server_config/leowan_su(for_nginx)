@@ -1,0 +1,83 @@
+
+server {
+    
+    listen 80;
+    listen [::]:80;
+
+    server_name leowan.su;
+
+    include /etc/nginx/favicon_params;
+
+    root /var/www/html;
+    index sub.leowan.su.html;
+
+}
+
+
+server {
+
+    listen 80;
+    listen [::]:80;
+
+    server_name megano.leowan.su www.megano.leowan.su;
+
+    include /etc/nginx/favicon_params;
+
+    location / {
+        include /etc/nginx/proxy_params;
+        proxy_pass http://unix:/run/gunicorn_megano.sock;
+    }
+    location /static/ {
+        root /home/leowan/PyProjects/sb_megano/;
+    }
+    location /media/ {
+        root /home/leowan/PyProjects/sb_megano/;
+    }
+}
+
+
+server {
+
+    listen 80;
+    listen [::]:80;
+
+    server_name guni.leowan.su www.guni.leowan.su;
+
+    include /etc/nginx/favicon_params;
+
+    location / {
+        include /etc/nginx/proxy_params;
+        proxy_pass http://unix:/run/gunicorn_lw.sock;
+    }
+    location /static/ {
+        root /home/leowan/PyProjects/lw_draft/mysite/;
+    }
+    location /media/ {
+        root /home/leowan/PyProjects/lw_draft/mysite/;
+    }
+}
+
+
+server {
+
+    listen 80;
+    listen [::]:80;
+
+    server_name dock.leowan.su www.dock.leowan.su;
+
+    include /etc/nginx/favicon_params;
+
+    location / {
+        include /etc/nginx/proxy_params;
+        proxy_pass http://37.252.21.112:8000;
+    }
+    location /static/ {
+        root /home/leowan/PyProjects/sb_draft/mysite/;
+    }
+    location /media/ {
+        root /home/leowan/PyProjects/sb_draft/mysite/;
+    }
+}
+
+
+#  sudo ln -s /etc/nginx/sites-available/leowan_su /etc/nginx/sites-enabled/

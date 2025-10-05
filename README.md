@@ -64,5 +64,5 @@ ___sudo systemctl start name.service<br>
 sudo systemctl enable name.service___<br>
 соответственно, (имя сервиса для _nginx_: _nginx.service_).<br>
 После этого интернет-магазин Megano становится доступным по адресам:
-+ http://megano.su/<br>
-+ http://www.megano.su/<br>
++ http://megano.leowan.su/<br>
++ http://www.megano.leowan.su/<br>

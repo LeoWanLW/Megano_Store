@@ -66,3 +66,5 @@ sudo systemctl enable name.service___<br>
 После этого интернет-магазин Megano становится доступным по адресам:
 + http://megano.leowan.su/<br>
 + http://www.megano.leowan.su/<br>
+
+После установки SSL сертификатов протокол изменится на __https__ (https://).
